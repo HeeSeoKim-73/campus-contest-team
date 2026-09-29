@@ -59,7 +59,7 @@ test('공고 작성 → 지원 → 승인; 정원 초과, 중복, 무권한 승�
   assert.equal((await applicants[0]('/applications/1/decision',{status:'approved'})).status,403);
   await owner('/posts/1');assert.match((await owner('/posts/1')).html,/first@example.ac.kr/);
   assert.equal((await owner('/applications/1/decision',{status:'approved'})).status,302);
-  assert.match((await owner('/posts/1')).html,/1 / 1명/);
+  assert.match((await owner('/posts/1')).html,/1 \/ 1명/);
   assert.equal((await owner('/applications/2/decision',{status:'approved'})).status,409);
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM applications WHERE status='approved'").get().n,1);
   assert.equal((await owner('/applications/1/decision',{status:'approved'})).status,409);
