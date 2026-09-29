@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><%= title %> · <%= config.school %></title><link rel="stylesheet" href="/style.css"><link rel="icon" href="/favicon.svg" type="image/svg+xml"></head>
+<body><header class="topbar"><a class="brand" href="/"><span class="brand-icon">T</span> 캠퍼스 팀업</a><nav aria-label="주 메뉴"><% if(user) { %><a href="/">모집 공고</a><a href="/my">내 활동</a><span class="user"><%= user.name %> · <%= user.department %></span><form action="/logout" method="post"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="text-button">로그아웃</button></form><% } else { %><a href="/login">로그인</a><a href="/register">학교 인증하고 시작하기</a><% } %></nav></header>
+<main><% if(config.mailMode==='console') { %><div class="demo-note">로컬 시연 모드 · 학교 이메일 인증 링크는 서버 터미널에서 확인합니다.</div><% } %><%- include(view) %></main>
+<footer><span>캠퍼스 팀업</span><span><%= config.school %> 구성원을 위한 공모전 팀원 모집</span></footer></body></html>
